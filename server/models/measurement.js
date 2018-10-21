@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 
 const MeasurementSchema = new Schema({
-    id: { type: Number, unique: true, index: true },
+    sensor_id: Number,
     name: { type: String, required: true },
     value: { type: Number, required: true },
     date: Date

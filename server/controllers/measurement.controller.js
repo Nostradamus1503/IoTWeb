@@ -16,7 +16,7 @@ measurCtrl.createSensor = async(req, res) => {
 
 measurCtrl.getSensor = async(req, res) => {
     console.log(req.params.id);
-    const measurement = await Measurement.findOne({ sid: req.params.id });
+    const measurement = await Measurement.find({ sensor_id: req.params.id });
     res.json(measurement);
 };
 measurCtrl.editSensor = async(req, res) => {
