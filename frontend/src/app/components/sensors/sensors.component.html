@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col s5">
+      <div class="card">
+        <div class="card-content">
+          <form #sensorForm="ngForm" (ngSubmit)="addSensor(sensorForm)">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)] = "sensorService.selectedSensor._id">
+            <div class="row">
+              <div class="input-field col s12">
+                <input type="text" name="sid" #sid="ngModel" 
+                [(ngModel)]="sensorService.selectedSensor.sid" 
+                placeholder="Sensor Id">
+              </div>
+              <div class="input-field col s12">
+                <input type="text" name="sensorname" #sensorname="ngModel" 
+                [(ngModel)]="sensorService.selectedSensor.sensorname" 
+                placeholder="Sensor Name">
+              </div>
+              <div class="input-field col s12">
+                  <input type="text" name="location" #location="ngModel" 
+                  [(ngModel)]="sensorService.selectedSensor.location" 
+                  placeholder="Sensor Location">
+              </div>
+              <div class="input-field col s12">
+                  <input type="text" name="alarmname" #alarmname="ngModel" 
+                  [(ngModel)]="sensorService.selectedSensor.alarmname" 
+                  placeholder="Alarm Name">
+              </div>              
+              <div class="input-field col s12">
+                  <input type="text" name="alvalue" #alvalue="ngModel" 
+                  [(ngModel)]="sensorService.selectedSensor.alvalue" 
+                  placeholder="Alarm Value">
+              </div>
+              <div class="card-action">
+                <div class="input-field col s12">
+                  <button class="btn right" style="margin-left: 2px;background-color: darkred" (click)="resetForm(sensorForm)">Cancel</button>
+                  <button class="btn right" style="background-color: darkgreen" >Save</button>
+
+                </div>
+
+              </div>      
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col s7">
+      <table>
+        <thead>
+          <th>Nro de Sensor</th>
+          <th>Nombre del Sensor</th>
+          <th>Ubicación del Sensor</th>
+          <th>Nombre de la Alarma</th>
+          <th>Valor de la Alarma</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let sensor of sensorService.sensors">
+              <td>{{sensor.sid}}</td>
+              <td>{{sensor.sensorname}}</td>
+              <td>{{sensor.location}}</td>
+              <td>{{sensor.alarmname}}</td>
+              <td>{{sensor.alvalue}}</td>
+              <td>
+                <a (click)="editSensor(sensor)">
+                  <i class="material-icons">edit</i>
+                </a>
+              </td>
+              <td>
+                  <a (click)="deleteSensor(sensor._id)">
+                    <i class="material-icons">delete</i>
+                  </a>
+                </td>
+              </tr>
+          </tbody>
+      </table>
+    </div>    
+  </div>
+</div>
